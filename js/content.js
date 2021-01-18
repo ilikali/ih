@@ -64,9 +64,7 @@ function bootstrap() {
       const container = document.querySelector('.category_select')
       container.innerHTML += `<option value="${obj.id}">${obj.name}</option>`
     }
-  }).catch(function() {
-    console.log("Booo");
-  });
+  })
 
   let currentImageUrl
   let currentSiteTitle
