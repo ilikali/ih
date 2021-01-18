@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" media="all" href="style/basic.css?3"/>
+  </head>
+  <body>
+    <div class="auth_content">
+      <div class="auth_mid">
+        <div class="logo"></div>
+        <h2>Please authorize the app.</h2>
+        <p>We need this for modifying boards you have access to.</p>
+        <button class="blue_bttn">Authorize</button>
+      </div>
+
+    </div>
+    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+    <script>
+      document.querySelector('button').addEventListener('click', function () {
+        const authorizeOptions = {
+          response_type: 'token',
+          redirect_uri: 'https://' + window.location.host + '/dist/auth-success.html',
+        }
+        miro
+          .authorize(authorizeOptions)
+          .then(() => miro.getToken())
+          .then((token) => {
+            if (token) {
+              miro.board.ui.closeModal('success')
+            } else {
+              console.log('Something went wrong')
+            }
+          })
+      })
+    </script>
+  </body>
