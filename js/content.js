@@ -24,14 +24,6 @@ function renderResult(obj) {
   container.innerHTML += `<div class="search_result" data-image-url="${obj.image.url}" data-site-url="${obj.url}" data-site-title="${obj.name}" data-site-category="${obj.industry.name}"><div class="sr_image" style="background-image:url(${obj.image.url});"></div><div class="sr_desc"><b>${obj.name}</b><p>${obj.industry.name}</p></div></div>`
   const imageOptions = {
     draggableItemSelector: '.search_result',
-    // onClick: async (targetElement) => {
-    //   const image_url = targetElement.getAttribute('data-image-url')
-    //   const title = targetElement.getAttribute('data-site-title')
-    //   const category = targetElement.getAttribute('data-site-category')
-    //   const url = targetElement.getAttribute('data-site-url')
-    //   const widget = (await createImage(0, 0, image_url, title, category, url))[0]
-    //   miro.board.viewport.zoomToObject(widget)
-    // },
     getDraggableItemPreview: (targetElement) => {
       currentImageUrl = targetElement.getAttribute('data-image-url')
       currentSiteTitle = targetElement.getAttribute('data-site-title')
@@ -79,9 +71,7 @@ function bootstrap() {
       let obj = data[i];
       renderResult(obj)
     }
-  }).catch(function() {
-    console.log("Booo");
-  });
+  })
 
   $(document).on('change', '.category_select', function (e) {
     data = $(".search_form").serialize()
